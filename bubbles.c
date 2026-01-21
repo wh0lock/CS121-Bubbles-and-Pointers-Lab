@@ -7,18 +7,38 @@ const int MAX = 9;
 
 void printValues(int* values){
 	int i = 0;
+	printf("[");
 	for (i=0; i<MAX; i++){
-		printf("%d ", values[i]);
+		printf(" %d ", values[i]);
 	} // end for
-} 
-void sort(int*);
-void swap(int*, int*);
+	printf("]\n");
+} // end printValues
 
+void swap(int* x, int* y){
+        int swapVar;
+        swapVar = *x;
+        *x = *y;
+        *y = swapVar;
+} // end swap
+
+void sort(int* values){
+	int i;
+	int j;
+	for (i = 0; i < MAX - 1; i++){
+		for (j = 0; j < MAX - 1; j++){
+			if (values[j] > values[j+1]){
+				swap(&values[j], &values[j+1]);
+				printValues(values);
+			} // end if
+		} // end for
+	} // end for
+} // end sort
+			
 int main(){
 	int values[] = {7, 3, 9, 4, 6, 1, 2, 8, 5};
 	printf("Before: \n");
 	printValues(values);
-/*
+
 	// test swap
 	int x = 3;
 	int y = 5;
@@ -29,6 +49,6 @@ int main(){
 	sort(values);
 	printf("After: \n");
 	printValues(values);
-*/
+
 	return(0);
-}/// end main
+} // end main
